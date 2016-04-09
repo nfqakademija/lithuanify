@@ -3,15 +3,15 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class HomeController extends Controller
 {
     /**
-     * Home page index action.
-     *
+     * @Route("/Test")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function showAction()
     {
         return $this->render('AppBundle:Home:index.html.twig', array(
             // ...
