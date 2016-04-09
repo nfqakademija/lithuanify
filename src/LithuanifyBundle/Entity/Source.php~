@@ -1,0 +1,49 @@
+<?php
+
+namespace LithuanifyBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="event")
+ */
+class Source
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $url;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $language;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $last_crawl;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $number_of_news;
+}
