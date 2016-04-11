@@ -3,14 +3,14 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% block head_stylesheets %}
-    <link rel="stylesheet"
-          href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 {% endblock %}
 {% block body %}
     {{ parent() }}
+    <button type="button" class="btn btn-primary btn-xs" id="menu-on">Rodyti</button>
     <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
+        <button type="button" class="btn btn-primary btn-xs" id="menu-on-off">Slėpti</button>
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
                 <a href="#">
@@ -42,7 +42,6 @@
                 <img width="105px" src="http://g1.dcdn.lt/images/pix/kanados-lietuvis-algimantas-puteris-70527820.jpg" style="float: left;" />
                 <p>Mediciną Kaune studijuojantis Kanados lietuvis Algimantas Puteris tapęs gydytoju norėtų likti gyventi Lietuvoje.</p>
             </article>
-
         </ul>
     </div>
         <div id="read-article">
@@ -75,14 +74,15 @@
                             <div class="form-group">
                                 <input type="date" class="form-control" id="date2" value="<?php echo date('Y-m-d');?>">
                             </div>
-                            <button type="submit" class="btn btn-default" id="menu-toggle">Ieškoti</button>
+                            <button type="submit" class="btn btn-primary" id="menu-toggle">Ieškoti</button>
                         </form>
                     </div>
                 </div>
                 </center>
             </div>
             <div id="map"></div>
-    </div>
+            <div id="slider"></div>
+        </div>
     </div>
     <script>
         function initMap() {
@@ -107,7 +107,7 @@
                 map: map,
                 icon: image,
                 animation: google.maps.Animation.DROP,
-                title: 'Hello World!'
+                title: 'Lithuanify'
             });
             var contentString =
                     '<div id="siteNotice">'+
