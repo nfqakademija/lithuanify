@@ -3,8 +3,6 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% block head_stylesheets %}
-    <link rel="stylesheet"
-          href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 {% endblock %}
 {% block body %}
     {{ parent() }}
@@ -55,8 +53,9 @@
                 </center>
             </div>
             <div id="map"></div>
-    </div>
-    <script>
+            <div id="slider"></div>
+        </div>
+        <script>
         function initMap() {
             var myLatLng = {lat: 20, lng: 0};
             var map = new google.maps.Map(document.getElementById('map'), {
