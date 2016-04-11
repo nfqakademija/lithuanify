@@ -18,6 +18,22 @@
             article img {
                 padding-right: 5px;
             }
+            #read-article {
+                z-index: 0;
+                width: 100%;
+                height: 100%;
+                padding-left: 350px;
+                padding-top: 100px;
+                background-color: white;
+                display: none;
+            }
+            #read-article h3 {
+                width: 520px;
+                margin-top: 0px;
+            }
+            #read-article p {
+                width: 520px;
+            }
             .col-lg-12 {
                 height:100%;
                 margin: 0px;
@@ -52,6 +68,18 @@
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <script>
+        $("#read-toggle").click(function() {
+            $('#page-content-wrapper').slideUp(300);
+            $('#read-article').delay(300).slideDown(300);
+        });
+    </script>
+    <script>
+        $("#read-toggle2").click(function() {
+            $('#read-article').slideUp(300);
+            $('#page-content-wrapper').delay(300).slideDown(300);
         });
     </script>
     <script>
