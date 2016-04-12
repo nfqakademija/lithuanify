@@ -11,20 +11,20 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
-     * @OneToOne(targetEntity="Country")
-     * @JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Country")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
 
     /**
-     * @OneToOne(targetEntity="Event")
-     * @JoinColumn(name="event_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Event")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     private $event;
 
     /**
-     * @OneToOne(targetEntity="Source")
-     * @JoinColumn(name="source_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Source")
+     * @ORM\JoinColumn(name="source_id", referencedColumnName="id")
      */
     private $source;
 
@@ -246,5 +246,77 @@ class Article
     public function getSourceId()
     {
         return $this->source_id;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \LithuanifyBundle\Entity\Country $country
+     *
+     * @return Article
+     */
+    public function setCountry(\LithuanifyBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \LithuanifyBundle\Entity\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \LithuanifyBundle\Entity\Event $event
+     *
+     * @return Article
+     */
+    public function setEvent(\LithuanifyBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \LithuanifyBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Set source
+     *
+     * @param \LithuanifyBundle\Entity\Source $source
+     *
+     * @return Article
+     */
+    public function setSource(\LithuanifyBundle\Entity\Source $source = null)
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return \LithuanifyBundle\Entity\Source
+     */
+    public function getSource()
+    {
+        return $this->source;
     }
 }

@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Source
 {
     /**
-     * @OneToOne(targetEntity="Language")
-     * @JoinColumn(name="language_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Language")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
      */
     private $language;
 
@@ -205,5 +205,29 @@ class Source
     public function getNumberOfNews()
     {
         return $this->number_of_news;
+    }
+
+    /**
+     * Set languageId
+     *
+     * @param integer $languageId
+     *
+     * @return Source
+     */
+    public function setLanguageId($languageId)
+    {
+        $this->language_id = $languageId;
+
+        return $this;
+    }
+
+    /**
+     * Get languageId
+     *
+     * @return integer
+     */
+    public function getLanguageId()
+    {
+        return $this->language_id;
     }
 }
