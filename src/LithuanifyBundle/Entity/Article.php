@@ -11,6 +11,24 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
+     * @OneToOne(targetEntity="Country")
+     * @JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private $country;
+
+    /**
+     * @OneToOne(targetEntity="Event")
+     * @JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    private $event;
+
+    /**
+     * @OneToOne(targetEntity="Source")
+     * @JoinColumn(name="source_id", referencedColumnName="id")
+     */
+    private $source;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

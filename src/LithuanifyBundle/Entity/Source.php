@@ -11,6 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Source
 {
     /**
+     * @OneToOne(targetEntity="Language")
+     * @JoinColumn(name="language_id", referencedColumnName="id")
+     */
+    private $language;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -30,7 +36,7 @@ class Source
     /**
      * @ORM\Column(type="integer")
      */
-    private $language;
+    private $language_id;
 
     /**
      * @ORM\Column(type="integer")
@@ -112,9 +118,9 @@ class Source
      *
      * @return Source
      */
-    public function setLanguage($language)
+    public function setLanguage($languageId)
     {
-        $this->language = $language;
+        $this->language_id = $languageId;
 
         return $this;
     }
@@ -126,7 +132,7 @@ class Source
      */
     public function getLanguage()
     {
-        return $this->language;
+        return $this->language_id;
     }
 
     /**
