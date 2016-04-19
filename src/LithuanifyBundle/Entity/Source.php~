@@ -206,4 +206,28 @@ class Source
     {
         return $this->number_of_news;
     }
+
+    /**
+     * Set languageId
+     *
+     * @param integer $languageId
+     *
+     * @return Source
+     */
+    public function setLanguageId($languageId)
+    {
+        $this->language_id = $languageId;
+
+        return $this;
+    }
+
+    /**
+     * Get languageId
+     *
+     * @return integer
+     */
+    public function getLanguageId()
+    {
+        return $this->language_id;
+    }
 }
