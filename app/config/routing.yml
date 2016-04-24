@@ -1,8 +1,4 @@
 lithuanify:
     resource: "@LithuanifyBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-app:
-    resource: @AppBundle/Resources/config/routing.yml
-    type: yaml
+    type: annotation
+    prefix: /
