@@ -16,34 +16,14 @@
                         Rasti straipsniai
                     </a>
                 </li>
-                <article class="read-toggle">
-                    <h3>Pasaulinis skandalas: labai netikėtas Rusijos vaidmuo</h3>
-                    <img width="105px" src="http://g4.dcdn.lt/images/pix/vladimiras-putinas-70715302.jpg" style="float: left;" />
-                    <p>„Panamos dokumentai“ neatrodo palankūs Rusijai. Žurnalistai, tyrinėjantys iš vienos Panamos teisinės
-                        įmonės nutekintus finansinius duomenis, teigia, kad Rusijos prezidentui Vladimirui Putinui artimų
-                        draugų ratas ofšorinėse bankų sąskaitose galėjo laikyti iki 2 mlrd. JAV dolerių.</p>
-                </article>
-
-                <article  class="read-toggle">
-                    <h3>Kraukitės lagaminus – gyvenimas čia gerėja</h3>
-                    <img width="105px" src="http://g2.dcdn.lt/images/pix/londonas-70100190.jpg" style="float: left;" />
-                    <p>Iš Lietuvos į užsienį vėl siunčiama žinia: grįžkite, išvažiavusieji, dabar pats tinkamiausias metas.
-                        Gerai apmokamų darbų yra, vietinis verslas žino, kokių darbuotojų reikia. Kraukitės lagaminus –
-                        gyvenimas čia gerėja.</p>
-                </article>
-
-                <article class="read-toggle">
-                    <h3>Lietuvis emigrantas darbovietėje sukėlė didžiulį gaisrą: viršininko reakcija – netikėta</h3>
+                {% for i in 0..10 %}
+                    <article class="read-toggle">
+                    <h4>Lietuvis emigrantas darbovietėje sukėlė didžiulį gaisrą: viršininko reakcija – netikėta</h4>
                     <img width="105px" src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" style="float: left;" />
                     <p>Kai iš gimtojo Radviliškio Arūnas važiavo į Airiją, jis nemanė, kad ten jo laukia tiek daug
-                        išgyvenimų. Jis nesitikėjo, kad darbų teks pakeisti ne du ir ne tris, o keliolika.</p>
-                </article>
-
-                <article class="read-toggle">
-                    <h3>Kanados lietuvis mato vieną didelį studijų svetur pranašumą</h3>
-                    <img width="105px" src="http://g1.dcdn.lt/images/pix/kanados-lietuvis-algimantas-puteris-70527820.jpg" style="float: left;" />
-                    <p>Mediciną Kaune studijuojantis Kanados lietuvis Algimantas Puteris tapęs gydytoju norėtų likti gyventi Lietuvoje.</p>
-                </article>
+                    išgyvenimų. Jis nesitikėjo, kad darbų teks pakeisti ne du ir ne tris, o keliolika.</p>
+                    </article>
+                {% endfor %}
             </ul>
         </div>
 
@@ -90,6 +70,4 @@
             <div id="slider"></div>
         </div>
     </div>
-
-    <script src="{{ asset('js/initMap.js') }}"></script>
 {% endblock %}
