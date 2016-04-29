@@ -13,6 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+
         //AIzaSyDBNALb8hqG3FKicI_mEBL_SomBzrn57NI
         return $this->render('LithuanifyBundle:Default:index.html.twig');
     }
