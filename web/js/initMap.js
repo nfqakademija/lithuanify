@@ -27,7 +27,7 @@ function initMap() {
         ["title",12.0733335, 52.8234367, 100],
         ["Poland", 51.919438, 19.145136, 14],
         ["Latvia", 56.879635, 24.603189, 10],
-        ["Switzerland", 46.818188, 8.227512, 3]
+        ["Switzerland", 46.818188, 8.227512, 3],
     ];
     //var infowindow = new google.maps.InfoWindow();
 
@@ -49,4 +49,4 @@ function initMap() {
             }
         })(marker, i));
     }
-}
+};;

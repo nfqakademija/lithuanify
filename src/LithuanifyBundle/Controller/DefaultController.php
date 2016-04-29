@@ -3,6 +3,7 @@
 namespace LithuanifyBundle\Controller;
 
 use LithuanifyBundle\Entity\Article;
+use LithuanifyBundle\Entity\Country;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -16,6 +17,11 @@ class DefaultController extends Controller
     {
 
         //AIzaSyDBNALb8hqG3FKicI_mEBL_SomBzrn57NI
+
+//        $em = $this->getDoctrine()->getManager();
+//        $country = $em->getRepository('LithuanifyBundle:Country')->findOneByName('Lithuania');
+//        return $country->getId();
+
         return $this->render('LithuanifyBundle:Default:index.html.twig');
     }
 
@@ -60,5 +66,24 @@ class DefaultController extends Controller
             $em->flush();
         }
 
+    }
+    public function importCountries()
+    {
+        if (($handle = fopen("/Users/rokasstasys/Sites/lithuanify/countries.csv", "r")) !== FALSE)
+        {
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+            {
+                $country = new Country();
+                $country->setName($data[0]);
+                $country->setLat($data[6]);
+                $country->setLng($data[7]);
+                $country->setFlag($data[4]);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($country);
+                $em->flush();
+            }
+            fclose($handle);
+        }
     }
 }
