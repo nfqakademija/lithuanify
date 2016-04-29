@@ -1,4 +1,14 @@
 {% extends "::base.html.twig" %}
+{% form_theme form 'bootstrap3.twig' %}
+
+{% form_theme form _self %}
+
+{% block integer_widget %}
+    <div class="integer_widget">
+        {% set type = type|default('number') %}
+        {{ block('form_widget_simple') }}
+    </div>
+{% endblock %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
@@ -50,17 +60,24 @@
                     <div class="row">
                         <div class="col-lg-4"></div>
                         <div class = "col-lg-4">
-                            <form>
-                                <div class="input-daterange input-group" data-provide="datepicker" id="range">
-                                    <input type="text" class="input-sm form-control" name="start" />
-                                    <span class="input-group-addon">iki</span>
-                                    <input type="text" class="input-sm form-control" name="end" />
+                            <div class="input-daterange input-group" data-provide="datepicker" id="range">
+                                 {{ form_start(form) }}
+                                <div class="col-lg-4 no-gutter">
+                                    {{ form_errors(form.beginDate) }}
+                                    {{ form_widget(form.beginDate) }}
+                                    </div>
+                                <div class="col-lg-1 no-gutter">
+                                    <span class="input-group-addon no-gutter">iki</span>
+                                    </div>
+                                <div class="col-lg-4 no-gutter">
+                                    {{ form_errors(form.endDate) }}
+                                    {{ form_widget(form.endDate) }}
+                                    </div>
+                                <div class="col-lg-2">
+                                        <button type = "submit" class ="btn btn-primary btn-block" id="menu-toggle">Ieškoti!</button>
+                                    </div>
                                 </div>
-                                <div class="col-lg-2"></div>
-                                <div class="col-lg-8">
-                                    <button type = "submit" class ="btn btn-primary btn-block" id="menu-toggle">Ieškoti!</button>
-                                </div>
-                            </form>
+                            {{ form_end(form) }}
                         </div>
                         <div class="col-lg-4"></div>
                     </div>

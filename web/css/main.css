@@ -4,6 +4,10 @@ html, body, .container, #map {
     margin: 0;
     padding: 0;
 }
+.no-gutter {
+    padding: 0;
+    margin: 0;
+}
 .row {
     width: 100%;
     margin-top: 20px;
@@ -27,18 +31,10 @@ article img {
 }
 #read-article h3 {
     width: 520px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 #read-article p {
     width: 520px;
-}
-.col-lg-12 {
-    height:100%;
-    margin: 0px;
-    padding: 0px;
-}
-.gmnoprint {
-    display:none;
 }
 #slider {
     width: 100%;

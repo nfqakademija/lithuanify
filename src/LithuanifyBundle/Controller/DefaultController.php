@@ -4,6 +4,8 @@ namespace LithuanifyBundle\Controller;
 
 use LithuanifyBundle\Entity\Article;
 use LithuanifyBundle\Entity\Country;
+use LithuanifyBundle\Entity\DatePicker;
+use LithuanifyBundle\Form\DatePick;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -18,11 +20,13 @@ class DefaultController extends Controller
 
         //AIzaSyDBNALb8hqG3FKicI_mEBL_SomBzrn57NI
 
-//        $em = $this->getDoctrine()->getManager();
-//        $country = $em->getRepository('LithuanifyBundle:Country')->findOneByName('Lithuania');
-//        return $country->getId();
+        $datePick = new DatePicker();
+        $form = $this->createForm(DatePick::class, $datePick);
 
-        return $this->render('LithuanifyBundle:Default:index.html.twig');
+        return $this->render('LithuanifyBundle:Default:index.html.twig',
+        [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
