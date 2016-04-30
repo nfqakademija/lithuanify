@@ -7,6 +7,7 @@ var uglify  = require('gulp-uglify');
 
 var dir = {
     assets: './app/Resources/',
+    jsScripts: './app/Resources/scripts/',
     dist: './web/',
     bower: './bower_components/',
     bootstrapJS: './bower_components/bootstrap-sass/assets/javascripts/bootstrap/'
@@ -22,11 +23,11 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
     gulp.src([
             dir.bower + 'jquery/dist/jquery.min.js',
-            // Bootstrap JS modules
-            //dir.bootstrapJS + 'transition.js',
-            //...
-            // Main JS file
-            dir.assets + 'scripts/main.js'
+            dir.bower + 'bootstrap-sass/assets/javascripts/bootstrap.min.js',
+            dir.bower + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+            dir.bower + 'bootstrap-datepicker/dist/locales/bootstrap-datepicker.lt.min.js',
+            dir.jsScripts + 'initMap.js',
+            dir.jsScripts + 'buttonToggle.js'
         ])
         .pipe(concat('script.js'))
         .pipe(uglify())

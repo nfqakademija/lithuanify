@@ -1,2 +1,27 @@
 //bootstrap
 @import "./bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "./bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min";
+
+@import "base/variables";
+@import "components/readArticles";
+@import "components/slider";
+@import "components/sidebar";
+
+html, body, .container, #map {
+    height:100%;
+    width:100%;
+    @extend .no-gutter;
+}
+.no-gutter {
+    padding: 0;
+    margin: 0;
+}
+.row {
+    width: 100%;
+    margin-top: $gutter;
+    z-index: 2000000;
+    position: absolute;
+}
+#map {
+    height:100%;
+}

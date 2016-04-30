@@ -1,0 +1,28 @@
+$articleWidth: 520px;
+$articleSpaceTop: 100px;
+$articleSpaceLeft: 350px;
+$articleMainImageWidth: 520px;
+
+.littleSpaceRight {
+  padding-right: 5px;
+}
+
+.spaceTop {
+  padding-top: $articleSpaceTop;
+}
+.spaceLeft {
+  padding-left: $articleSpaceLeft;
+}
+#read-article {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: none;
+  h3,
+  p {
+    width: $articleWidth;
+  }
+  .mainImg {
+    width: $articleMainImageWidth;
+  }
+}
