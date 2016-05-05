@@ -4,6 +4,7 @@ namespace LithuanifyBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +21,7 @@ class DatePick extends AbstractType
     {
         $today = (new \DateTime())->format('m/d/Y');
         $builder
-            ->add('beginDate', 'date', [
+            ->add('beginDate', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'MM/dd/yyyy',
                 'attr' => [
@@ -30,7 +31,7 @@ class DatePick extends AbstractType
                     'name' => 'start'
                 ]
             ])
-            ->add('endDate', 'date', [
+            ->add('endDate', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'MM/dd/yyyy',
                 'attr' => [
