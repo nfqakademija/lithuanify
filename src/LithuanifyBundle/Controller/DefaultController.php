@@ -71,6 +71,7 @@ class DefaultController extends Controller
         }
 
     }
+    
     public function importCountries()
     {
         if (($handle = fopen("/Users/rokasstasys/Sites/lithuanify/countries.csv", "r")) !== FALSE)
