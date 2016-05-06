@@ -41,7 +41,7 @@ class DefaultController extends Controller
         }
 
         $form->handleRequest($request);
-        $articles = "";
+        $rawArticles = array();
 
         if ($request->getMethod() == 'POST') {
             $em = $this->getDoctrine()->getManager();
@@ -58,7 +58,6 @@ class DefaultController extends Controller
 
             }
             $articles = $query->getResult();
-            $rawArticles = array();
             for($i = 0; $i < sizeof($articles); $i++)
             {
                 array_push($rawArticles, array($articles[$i]->getTitle(), $articles[$i]->getContent(),
@@ -115,9 +114,5 @@ class DefaultController extends Controller
             $em->persist($article);
             $em->flush();
         }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     }
 }
