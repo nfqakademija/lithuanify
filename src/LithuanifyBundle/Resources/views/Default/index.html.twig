@@ -58,7 +58,8 @@
             <div class="container-fluid">
                 <center>
                     <div class="row">
-                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                        </div>
                         <div class = "col-lg-4">
                             <div class="input-daterange input-group" data-provide="datepicker" id="range">
                                  {{ form_start(form) }}
@@ -78,6 +79,11 @@
                                 </div>
                             </div>
                             {{ form_end(form) }}
+
+                            {{ form_start(form1) }}
+                            {{ form_widget(form1.event) }}
+                            {{ form_widget(form1.search) }}
+                            {{ form_end(form1) }}
                         </div>
                         <div class="col-lg-4"></div>
                     </div>

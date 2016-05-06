@@ -10,7 +10,7 @@ class DatePicker {
 
     protected $beginDate;
     protected $endDate;
-
+    
     /**
      * @return string
      */

@@ -4,6 +4,8 @@ namespace LithuanifyBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,27 +18,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class DatePick extends AbstractType
 {
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $today = (new \DateTime())->format('m/d/Y');
         $builder
-            ->add('beginDate', 'date', [
+            ->add('beginDate', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'MM/dd/yyyy',
                 'attr' => [
                     'class' => 'form-inline form-control input-inline datepicker',
                     'data-provide' => 'datepicker',
-                    'value' => $today,
                     'name' => 'start'
                 ]
             ])
-            ->add('endDate', 'date', [
+            ->add('endDate', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'MM/dd/yyyy',
                 'attr' => [
                     'class' => 'form-inline form-control input-inline datepicker',
                     'data-provide' => 'datepicker',
-                    'value' => $today,
                     'name' => 'end'
                 ]
             ]);

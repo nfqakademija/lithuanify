@@ -5,9 +5,12 @@ namespace LithuanifyBundle\Controller;
 use LithuanifyBundle\Entity\Article;
 use LithuanifyBundle\Entity\Country;
 use LithuanifyBundle\Entity\DatePicker;
+use LithuanifyBundle\Entity\EventPicker;
 use LithuanifyBundle\Form\DatePick;
+use LithuanifyBundle\Form\EventPick;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -15,17 +18,34 @@ class DefaultController extends Controller
      * @Route("/")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
 
         //AIzaSyDBNALb8hqG3FKicI_mEBL_SomBzrn57NI
 
         $datePick = new DatePicker();
+        $eventPick = new EventPicker();
         $form = $this->createForm(DatePick::class, $datePick);
+        $form1 = $this->createForm(EventPick::class, $eventPick);
+
+        $form1->handleRequest($request);
+        if ($form1->isValid())
+        {
+            $event = date('m/d/Y', $eventPick->getCurrentDate());
+
+            $form->get('beginDate')->setData(new \DateTime($event));
+            $form->get('endDate')->setData(new \DateTime($event));
+        }
+        else
+        {
+            $form->get('beginDate')->setData(new \DateTime());
+            $form->get('endDate')->setData(new \DateTime());
+        }
 
         return $this->render('LithuanifyBundle:Default:index.html.twig',
         [
             'form' => $form->createView(),
+            'form1' => $form1->createView(),
         ]);
     }
 
@@ -68,27 +88,6 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
-        }
-
-    }
-    
-    public function importCountries()
-    {
-        if (($handle = fopen("/Users/rokasstasys/Sites/lithuanify/countries.csv", "r")) !== FALSE)
-        {
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
-            {
-                $country = new Country();
-                $country->setName($data[0]);
-                $country->setLat($data[6]);
-                $country->setLng($data[7]);
-                $country->setFlag($data[4]);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($country);
-                $em->flush();
-            }
-            fclose($handle);
         }
     }
 }
