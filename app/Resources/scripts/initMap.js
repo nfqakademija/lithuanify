@@ -33,20 +33,13 @@ function initMap() {
 
     var marker, i;
 
-    for (i = 0; i < locations.length; i++) {
+    for (i = 0; i < test.length; i++) {
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            position: new google.maps.LatLng(test[i][3], test[i][4]),
             map: map,
             animation: google.maps.Animation.DROP,
             icon: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_black'+
             locations[i][3]+'.png'
         });
-
-        /*google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-                //infowindow.setContent(locations[i][0]);
-                //infowindow.open(map, marker);
-            }
-        })(marker, i));*/
     }
 }

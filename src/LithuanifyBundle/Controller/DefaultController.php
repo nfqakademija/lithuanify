@@ -16,13 +16,11 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/")
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
-
-        //AIzaSyDBNALb8hqG3FKicI_mEBL_SomBzrn57NI
-
         $datePick = new DatePicker();
         $eventPick = new EventPicker();
         $form = $this->createForm(DatePick::class, $datePick);
@@ -42,10 +40,38 @@ class DefaultController extends Controller
             $form->get('endDate')->setData(new \DateTime());
         }
 
+        $form->handleRequest($request);
+        $articles = "";
+
+        if ($request->getMethod() == 'POST') {
+            $em = $this->getDoctrine()->getManager();
+            $query = $em->createQuery(
+                'SELECT p
+                FROM LithuanifyBundle:Article p
+                WHERE p.date <= :beginDate
+                AND p.date >= :endDate'
+            )
+            ->setParameter('beginDate', strtotime($datePick->getBeginDate()->format('d/m/Y')))
+            ->setParameter('endDate', strtotime($datePick->getEndDate()->format('d/m/Y')));
+            if($form->get('beginDate')->isEmpty())
+            {
+
+            }
+            $articles = $query->getResult();
+            $rawArticles = array();
+            for($i = 0; $i < sizeof($articles); $i++)
+            {
+                array_push($rawArticles, array($articles[$i]->getTitle(), $articles[$i]->getContent(),
+                    $articles[$i]->getCountry()->getName(), $articles[$i]->getCountry()->getLat(),
+                    $articles[$i]->getCountry()->getLng()));
+            }
+        }
+
         return $this->render('LithuanifyBundle:Default:index.html.twig',
         [
             'form' => $form->createView(),
             'form1' => $form1->createView(),
+            'articles' => $rawArticles,
         ]);
     }
 
@@ -89,5 +115,9 @@ class DefaultController extends Controller
             $em->persist($article);
             $em->flush();
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     }
 }

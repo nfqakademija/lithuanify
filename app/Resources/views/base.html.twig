@@ -27,6 +27,9 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        var test = {{ articles|json_encode|raw }};
+    </script>
     <script src="{{ asset('js/script.js') }}"></script>
     <script async defer
             src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDBNALb8hqG3FKicI_mEBL_SomBzrn57NI

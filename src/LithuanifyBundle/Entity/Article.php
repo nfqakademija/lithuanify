@@ -5,13 +5,13 @@ namespace LithuanifyBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="article")
+ * @ORM\Entity()
  */
 class Article
 {
     /**
-     * @ORM\OneToOne(targetEntity="Country")
+     * @ORM\OnetoOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
