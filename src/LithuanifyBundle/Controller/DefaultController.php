@@ -12,6 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class DefaultController
+ * @package LithuanifyBundle\Controller
+ */
 class DefaultController extends Controller
 {
     /**
@@ -27,47 +31,25 @@ class DefaultController extends Controller
         $form1 = $this->createForm(EventPick::class, $eventPick);
 
         $form1->handleRequest($request);
-        if ($form1->isValid())
-        {
+        if ($form1->isValid()) {
             $event = date('m/d/Y', $eventPick->getCurrentDate());
 
             $form->get('beginDate')->setData(new \DateTime($event));
             $form->get('endDate')->setData(new \DateTime($event));
-        }
-        else
-        {
+        } else {
             $form->get('beginDate')->setData(new \DateTime());
             $form->get('endDate')->setData(new \DateTime());
         }
 
         $form->handleRequest($request);
         $rawArticles = array();
-
-        if ($request->getMethod() == 'POST') {
-            $em = $this->getDoctrine()->getManager();
-            $query = $em->createQuery(
-                'SELECT p
-                FROM LithuanifyBundle:Article p
-                WHERE p.date <= :beginDate
-                AND p.date >= :endDate'
-            )
-            ->setParameter('beginDate', strtotime($datePick->getBeginDate()->format('d/m/Y')))
-            ->setParameter('endDate', strtotime($datePick->getEndDate()->format('d/m/Y')));
-            if($form->get('beginDate')->isEmpty())
-            {
-
-            }
-            $articles = $query->getResult();
-            for($i = 0; $i < sizeof($articles); $i++)
-            {
-                array_push($rawArticles, array($articles[$i]->getTitle(), $articles[$i]->getContent(),
-                    $articles[$i]->getCountry()->getName(), $articles[$i]->getCountry()->getLat(),
-                    $articles[$i]->getCountry()->getLng()));
-            }
+        $articleManager = $this->get('article_manager');
+        if ($form->isValid()) {
+            $articles = $articleManager->searchArticles($datePick);
+            $rawArticles = $articleManager->buildArray($articles);
         }
 
-        return $this->render('LithuanifyBundle:Default:index.html.twig',
-        [
+        return $this->render('LithuanifyBundle:Default:index.html.twig', [
             'form' => $form->createView(),
             'form1' => $form1->createView(),
             'articles' => $rawArticles,
@@ -85,11 +67,11 @@ class DefaultController extends Controller
         $inner = 'https://extraction.import.io/query/runtime/22f06d81-5536-477c-bbeb-7c848bc992ba?_apikey=';
         $outerFirstSource = 'http://www.mk.ru/search/?q=%D0%BB%D0%B8%D1%82%D0%B2%D0%B0';
 
-        $outerUrl = $outer . $apiKey . '&url=' . $outerFirstSource;
+        $outerUrl = $outer.$apiKey.'&url='.$outerFirstSource;
         $firstPage = json_decode(file_get_contents($outerUrl));
 
         foreach ($firstPage->extractorData->data[0]->group[0]->LINK as $source) {
-            $a = file_get_contents($inner . $apiKey . '&url=' . $source->href);
+            $a = file_get_contents($inner.$apiKey.'&url='.$source->href);
             $a = json_decode($a);
 
             foreach ($a->extractorData->data[0]->group as $key => $value) {

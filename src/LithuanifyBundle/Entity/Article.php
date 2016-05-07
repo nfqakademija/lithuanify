@@ -11,19 +11,19 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
-     * @ORM\OnetoOne(targetEntity="Country")
+     * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
 
     /**
-     * @ORM\OneToOne(targetEntity="Event")
+     * @ORM\ManyToOne(targetEntity="Event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     private $event;
 
     /**
-     * @ORM\OneToOne(targetEntity="Source")
+     * @ORM\ManyToOne(targetEntity="Source")
      * @ORM\JoinColumn(name="source_id", referencedColumnName="id")
      */
     private $source;
