@@ -26,23 +26,17 @@
                         Rasti straipsniai
                     </a>
                 </li>
-                {#{% for i in 0..10 %}
-                    <article class="read-toggle">
-                    <h4>Lietuvis emigrantas darbovietėje sukėlė didžiulį gaisrą: viršininko reakcija – netikėta</h4>
-                    <img class="littleSpaceRight" width="105px" src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" style="float: left;" />
-                    <p>Kai iš gimtojo Radviliškio Arūnas važiavo į Airiją, jis nemanė, kad ten jo laukia tiek daug
-                    išgyvenimų. Jis nesitikėjo, kad darbų teks pakeisti ne du ir ne tris, o keliolika.</p>
-                    </article>
-                {% endfor %}#}
-                {#{% for article in articles %}
-                    <article class="read-toggle">
-                        <h4>{{ article.title }}</h4>
-                        <script>var test = "{{ article.title }}";</script>
-                        <img class="littleSpaceRight" width="105px" src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" style="float: left;" />
-                        <p>Kai iš gimtojo Radviliškio Arūnas važiavo į Airiją, jis nemanė, kad ten jo laukia tiek daug
-                            išgyvenimų. Jis nesitikėjo, kad darbų teks pakeisti ne du ir ne tris, o keliolika.</p>
-                    </article>
-                {% endfor %}#}
+                <div id="js-load-articles">
+                    {% for country in articles %}
+                        {% for article in country[3] %}
+                            <article class="read-toggle">
+                                <h4>{{ article[0] }}</h4>
+                                <img class="littleSpaceRight" width="105px" src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" style="float: left;" />
+                                <p>{{ article[1] }}</p>
+                            </article>
+                        {% endfor %}
+                    {% endfor %}
+                    </div>
             </ul>
         </div>
 
