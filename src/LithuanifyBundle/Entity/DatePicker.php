@@ -2,17 +2,19 @@
 
 namespace LithuanifyBundle\Entity;
 
+use DateTime;
+
 /**
  * Class DatePicker
  * @package LithuanifyBundle\Entity
  */
-class DatePicker {
+class DatePicker
+{
 
     protected $beginDate;
     protected $endDate;
-    
     /**
-     * @return string
+     * @return DateTime
      */
     public function getBeginDate()
     {
@@ -20,7 +22,7 @@ class DatePicker {
     }
 
     /**
-     * @param string $beginDate
+     * @param DateTime $beginDate
      */
     public function setBeginDate($beginDate)
     {
@@ -28,7 +30,7 @@ class DatePicker {
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
     public function getEndDate()
     {
@@ -36,11 +38,10 @@ class DatePicker {
     }
 
     /**
-     * @param string $endDate
+     * @param DateTime $endDate
      */
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
     }
-
 }

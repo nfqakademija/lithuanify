@@ -10,4 +10,4 @@ services:
     article_manager:
         class: LithuanifyBundle\Utility\ArticleManager
         arguments:
-                entityManager: "@doctrine.orm.entity_manager"
+            ["@doctrine"]

@@ -2,7 +2,7 @@
 
 namespace LithuanifyBundle\Utility;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use LithuanifyBundle\Entity\DatePicker;
 
 /**
@@ -12,17 +12,15 @@ use LithuanifyBundle\Entity\DatePicker;
 class ArticleManager
 {
 
-    private $em;
-    private $startDate;
-    private $endDate;
+    private $managerRegistry;
 
     /**
      * ArticleManager constructor.
-     * @param EntityManager $entityManager
+     * @param ManagerRegistry $managerRegistry
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->em = $entityManager;
+        $this->managerRegistry = $managerRegistry;
     }
 
     /**
@@ -31,7 +29,7 @@ class ArticleManager
      */
     public function searchArticles(DatePicker $date)
     {
-        $query = $this->em->createQuery(
+        $query = $this->managerRegistry->getManager()->createQuery(
             'SELECT p
                 FROM LithuanifyBundle:Article p
                 WHERE p.date >= :beginDate
@@ -54,13 +52,14 @@ class ArticleManager
         foreach ($articles as $article) {
             $countries = array_column($rawArticles, 0);
             $foundCountry = false;
-            for ($j = 0; $j < sizeof($countries); $j++) {
+            $countriesSize = sizeof($countries);
+            for ($j = 0; $j < $countriesSize; $j++) {
                 if (strcmp($countries[$j], $article->getCountry()->getName()) == 0) {
                     $foundCountry = true;
                     array_push($rawArticles[$j][3], array($article->getTitle(), $article->getContent()));
                 }
             }
-            if ($foundCountry == false) {
+            if ($foundCountry === false) {
                 array_push($rawArticles, array(
                     $article->getCountry()->getName(),
                     $article->getCountry()->getLat(),
