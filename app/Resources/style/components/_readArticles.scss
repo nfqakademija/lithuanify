@@ -21,6 +21,7 @@ $articleMainImageWidth: 520px;
   h3,
   p {
     width: $articleWidth;
+    word-break: break-all;
   }
   .mainImg {
     width: $articleMainImageWidth;
