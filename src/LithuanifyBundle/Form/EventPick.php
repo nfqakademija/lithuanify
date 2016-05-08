@@ -29,8 +29,16 @@ class EventPick extends AbstractType
                 'label' => ' ',
                 'class' => 'LithuanifyBundle:Event',
                 'expanded' => false,
-                'multiple' => false
+                'multiple' => false,
+                'attr' => [
+                    'class' => 'form-control input-sm pull-right'
+                ]
         ))
-            ->add('search', SubmitType::class, array('label' => 'Ieškoti'));
+            ->add('search', SubmitType::class, array(
+                'label' => 'Rinktis', 
+                'attr' => [
+                    'class' => 'btn btn-primary btn-sm pull-left',
+                ]
+            ));
     }
 }

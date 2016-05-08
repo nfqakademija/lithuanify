@@ -61,32 +61,39 @@
             <div class="container-fluid">
                 <center>
                     <div class="row">
-                        <div class="col-lg-4">
-                        </div>
+                        <div class="col-lg-4"></div>
                         <div class = "col-lg-4">
                             <div class="input-daterange input-group" data-provide="datepicker" id="range">
                                  {{ form_start(form) }}
-                                <div class="col-lg-4 no-gutter">
+                                <div class="col-lg-4">
                                     {{ form_errors(form.beginDate) }}
                                     {{ form_widget(form.beginDate) }}
                                 </div>
-                                <div class="col-lg-1 no-gutter">
-                                    <span class="input-group-addon no-gutter">iki</span>
-                                </div>
-                                <div class="col-lg-4 no-gutter">
+                                <div class="col-lg-4">
                                     {{ form_errors(form.endDate) }}
                                     {{ form_widget(form.endDate) }}
                                 </div>
-                                <div class="col-lg-3">
-                                    <button type = "submit" class ="btn btn-primary btn-block" id="date_pick_save" name="date_pick[save]" value="ieskoti">Ieškoti!</button>
+                                <div class="col-lg-4">
+                                    <div class="btn-group pull-left">
+                                    <button type = "submit" class ="btn btn-primary" id="date_pick_save" name="date_pick[save]" value="ieskoti">Ieškoti!</button>
+                                    <button type="button" class="btn btn-primary btn-xs" id="event-on">Įvykiai</button>
+                                    </div>
                                 </div>
                             </div>
                             {{ form_end(form) }}
 
-                            {{ form_start(form1) }}
-                            {{ form_widget(form1.event) }}
-                            {{ form_widget(form1.search) }}
-                            {{ form_end(form1) }}
+                            <div class="row">
+                                    <div id="EventForm" style="display: none;">
+                                        <div class="col-lg-8">
+                                            {{ form_start(form1) }}
+                                            {{ form_widget(form1.event) }}
+                                        </div>
+                                        <div class="col-lg-2">
+                                            {{ form_widget(form1.search) }}
+                                            {{ form_end(form1) }}
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                         <div class="col-lg-4"></div>
                     </div>
