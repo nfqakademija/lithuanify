@@ -37,7 +37,7 @@ class EventPick extends AbstractType
             ->add('search', SubmitType::class, array(
                 'label' => 'Rinktis', 
                 'attr' => [
-                    'class' => 'btn btn-primary btn-sm pull-left',
+                    'class' => 'btn btn-success btn-sm pull-left',
                 ]
             ));
     }

@@ -31,7 +31,8 @@
                         {% for article in country[3] %}
                             <article class="read-toggle">
                                 <h4>{{ article[0] }}</h4>
-                                <img class="littleSpaceRight" width="105px" src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" style="float: left;" />
+                                <img class="littleSpaceRight" width="105px"
+                                     src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" style="float: left;" />
                                 <p>{{ article[1] }}</p>
                             </article>
                         {% endfor %}
@@ -42,21 +43,8 @@
 
         <div class="spaceTop spaceLeft" id="read-article">
             <button type="button" class="btn btn-primary btn-xs" id="read-toggle2">Uždaryti</button>
-            <h3>Lietuvis emigrantas darbovietėje sukėlė didžiulį gaisrą: viršininko reakcija – netikėta</h3>
-            <p>Kai iš gimtojo Radviliškio Arūnas važiavo į Airiją, jis nemanė, kad ten jo laukia tiek daug išgyvenimų.
-                Jis nesitikėjo, kad darbų teks pakeisti ne du ir ne tris, o keliolika.</p><br />
-            <img class="mainImg" src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg"/><br /><br />
-                <p>Negalvojo apie tai, kad gal bus dienų, kai piniginėje neliks nė cento. Emigracijoje praėjau ugnį ir
-                    vandenį, „Emigrantams“ sako Arūnas. Tačiau šį kartą tai – ne skambi frazė, o realybė. Automobilių
-                    laužyne, kuriame dirbo, Arūnas sukėlė gaisrą – supleškėjo visas jo viršininkui priklausantis
-                    angaras. <br /><br />
-                    „Išleidinėjau kurą, su gręžtuvu pragręžiau baką. Atsitiko taip, kad gręžtuvas ėmė
-                    kibirkščiuoti. [...] Bet gręžiu toliau, jau nedaug likę, nes jau bėgo [benzinas], ir vienu momentu,
-                    kaip davė [ugnis]“, – prisimena Arūnas. <br /><br />
-                    To, ką patyrė, Arūnas niekada neužmirš. Tuo metu jis
-                    negalvojo apie tai, kad už sukeltą gaisrą jį galbūt atleis iš darbo. Pirma mintis buvo išsigelbėti
-                    pačiam. Kita – išsaugoti liepsnų ryjamą turtą.</p>
         </div>
+
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <center>
@@ -64,34 +52,39 @@
                         <div class="col-lg-4"></div>
                         <div class = "col-lg-4">
                             <div class="input-daterange input-group" data-provide="datepicker" id="range">
-                                 {{ form_start(form) }}
-                                <div class="col-lg-4">
+                                {{ form_start(form) }}
+                                <div class="col-lg-4 no-gutter">
                                     {{ form_errors(form.beginDate) }}
                                     {{ form_widget(form.beginDate) }}
                                 </div>
-                                <div class="col-lg-4">
-                                    {{ form_errors(form.endDate) }}
-                                    {{ form_widget(form.endDate) }}
+                                <div class="col-lg-4 no-gutter">
+                                        {{ form_errors(form.endDate) }}
+                                        {{ form_widget(form.endDate) }}
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="btn-group pull-left">
-                                    <button type = "submit" class ="btn btn-primary" id="date_pick_save" name="date_pick[save]" value="ieskoti">Ieškoti!</button>
-                                    <button type="button" class="btn btn-primary btn-xs" id="event-on">Įvykiai</button>
-                                    </div>
+                                <div class="col-lg-4 no-gutter">
+                                    <span class="input-group-btn no-gutter pull-left">
+                                        <button type = "submit" class ="btn btn-primary" id="date_pick_save"
+                                                name="date_pick[save]" value="ieskoti">Ieškoti</button>
+                                        <button type="button" class="btn btn-success" id="event-on">Įvykiai</button>
+                                    </span>
                                 </div>
+                                {{ form_end(form) }}
                             </div>
-                            {{ form_end(form) }}
 
                             <div class="row">
                                     <div id="EventForm" style="display: none;">
+                                        <div class="col-lg-2"></div>
                                         <div class="col-lg-8">
-                                            {{ form_start(form1) }}
-                                            {{ form_widget(form1.event) }}
+                                            <div class="col-lg-8 no-gutter">
+                                                {{ form_start(form1) }}
+                                                {{ form_widget(form1.event) }}
+                                            </div>
+                                            <div class="col-lg-4 no-gutter">
+                                                {{ form_widget(form1.search) }}
+                                                {{ form_end(form1) }}
+                                            </div>
                                         </div>
-                                        <div class="col-lg-2">
-                                            {{ form_widget(form1.search) }}
-                                            {{ form_end(form1) }}
-                                        </div>
+                                        <div class="col-lg-2"></div>
                                     </div>
                             </div>
                         </div>

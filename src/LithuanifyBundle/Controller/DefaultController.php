@@ -30,6 +30,14 @@ class DefaultController extends Controller
         $form = $this->createForm(DatePick::class, $datePick);
         $form1 = $this->createForm(EventPick::class, $eventPick);
 
+        $form->handleRequest($request);
+        $rawArticles = array();
+        $articleManager = $this->get('article_manager');
+        if ($form->isValid()) {
+            $articles = $articleManager->searchArticles($datePick);
+            $rawArticles = $articleManager->buildArray($articles);
+        }
+
         $form1->handleRequest($request);
         if ($form1->isValid()) {
             $event = date('m/d/Y', $eventPick->getCurrentDate());
@@ -39,14 +47,13 @@ class DefaultController extends Controller
         } else {
             $form->get('beginDate')->setData(new \DateTime());
             $form->get('endDate')->setData(new \DateTime());
-        }
 
-        $form->handleRequest($request);
-        $rawArticles = array();
-        $articleManager = $this->get('article_manager');
-        if ($form->isValid()) {
-            $articles = $articleManager->searchArticles($datePick);
-            $rawArticles = $articleManager->buildArray($articles);
+            if (!$form->isSubmitted() AND !$form1->isSubmitted()) {
+                $datePick->setBeginDate(new \DateTime());
+                $datePick->setEndDate(new \DateTime());
+                $articles = $articleManager->searchArticles($datePick);
+                $rawArticles = $articleManager->buildArray($articles);
+            }
         }
 
         return $this->render('LithuanifyBundle:Default:index.html.twig', [
