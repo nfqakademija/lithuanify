@@ -46,6 +46,27 @@ class Article
     private $content;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $country_id;
