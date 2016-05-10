@@ -8,19 +8,22 @@
 
 namespace LithuanifyBundle\Form;
 
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class EventPick
+ * @package LithuanifyBundle\Form
+ */
 class EventPick extends AbstractType
 {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,14 +34,14 @@ class EventPick extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'attr' => [
-                    'class' => 'form-control input-sm pull-right'
-                ]
-        ))
+                    'class' => 'form-control input-sm pull-right',
+                ],
+            ))
             ->add('search', SubmitType::class, array(
-                'label' => 'Rinktis', 
+                'label' => 'Rinktis',
                 'attr' => [
                     'class' => 'btn btn-success btn-sm pull-left',
-                ]
+                ],
             ));
     }
 }
