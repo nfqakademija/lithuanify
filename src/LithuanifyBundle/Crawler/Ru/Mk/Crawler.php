@@ -25,7 +25,7 @@ class Crawler
     public function getOuterPage($url = null)
     {
         $outerCrawlerUrl = $this->buildOuterPageUrl($url);
-        $outerPage = json_decode(file_get_contents($outerCrawlerUrl));
+        $outerPage = json_decode($this->makeRequest($outerCrawlerUrl));
 
         foreach ($outerPage->extractorData->data[0]->group[0]->LINK as $source) {
             $innerPageData = $this->getInnerPage($source->href);
@@ -42,13 +42,13 @@ class Crawler
 
         $this->parser->flush();
 
-        return ['pages' => $this->pages, 'nextPage' => $nextPage];
+        return $nextPage;
     }
 
     private function getInnerPage($url)
     {
         $innerPageUrl = $this->buildInnerPageUrl($url);
-        return json_decode(file_get_contents($innerPageUrl));
+        return json_decode($this->makeRequest($innerPageUrl));
     }
 
     private function buildOuterPageUrl($url = null)
@@ -73,5 +73,17 @@ class Crawler
         $innerCrawlerUrl .= http_build_query($options,'','&');
 
         return $innerCrawlerUrl;
+    }
+
+    private function makeRequest($url)
+    {
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
     }
 }

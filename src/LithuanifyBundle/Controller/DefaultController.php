@@ -38,7 +38,11 @@ class DefaultController extends Controller
     public function dataAction()
     {
         $crawler = $this->get('mk.crawler');
-        $crawler->getOuterPage();
+        $nextPage = $crawler->getOuterPage();
+
+        do {
+            $crawler->getOuterPage($nextPage);
+        } while (!is_null($nextPage));
     }
 
     public function importCountries()

@@ -58,7 +58,6 @@ class Parser
         $article->setCountry($this->country);
 
         $this->em->persist($article);
-        $this->em->flush();
     }
 
     public function flush()
