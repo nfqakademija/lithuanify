@@ -2,15 +2,23 @@
 
 namespace LithuanifyBundle\Crawler\Ru\Mk;
 
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
+use LithuanifyBundle\Entity\Article;
+use LithuanifyBundle\Entity\Country;
+use LithuanifyBundle\Entity\Source;
 
 class Parser
 {
     protected $em;
+    protected $country;
+    protected $source;
 
-    function __construct(EntityManager $em)
+    function __construct(Registry $doctine)
     {
-        $this->em = $em;
+        $this->em = $doctine->getEntityManager();
+        $this->country = $doctine->getRepository('LithuanifyBundle:Country')->find(1);
+        $this->source = $doctine->getRepository('LithuanifyBundle:Source')->find(1);
     }
 
     public function parsePage($pageData)
@@ -28,13 +36,34 @@ class Parser
                 }
 
             } else {
-                $content .= $value->Data[0]->text . '<br>';
+                if (isset($value->Data[0]->text)) {
+                    $content .= $value->Data[0]->text . '<br>';
+                }
             }
         }
 
         $date = $this->getDate($date);
 
         return compact('title', 'content', 'date');
+    }
+
+    public function persistPage($data)
+    {
+        $article = new Article();
+        $article->setTitle($data['title']);
+        $article->setContent($data['content']);
+        $article->setNewsUrl($data['url']);
+        $article->setSource($this->source);
+        $article->setDate($data['date']);
+        $article->setCountry($this->country);
+
+        $this->em->persist($article);
+        $this->em->flush();
+    }
+
+    public function flush()
+    {
+        $this->em->flush();
     }
 
     private function getDate($date)

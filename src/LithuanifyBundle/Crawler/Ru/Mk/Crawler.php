@@ -7,38 +7,40 @@ use LithuanifyBundle\Crawler\Ru\Mk\Parser;
 class Crawler
 {
     private $pages = [];
-    private $apiKey = '5afb00834532417d9e6a033abe6dfc09938db9122c38aa67153f65608831ec19d77821d17f57a1392bf7dd9715a4eb154b71c51886e00681b5924833b907523cff1f1edb5869b759ed2a5ec091fae469';
+    private $apiKey;
     private $outerUrl;
     private $innerUrl;
     private $outerFirstPage;
+    private $parser;
 
-    function __construct()
+    function __construct($apiKey, $innerUrl, $outerUrl, $outerFirstPage, Parser $parser)
     {
-        //@TODO move this to configs
-        $this->innerUrl = 'https://extraction.import.io/query/extractor/e4b61415-4984-4e64-b35c-03694f6efab9?';
-        $this->outerUrl = 'https://extraction.import.io/query/extractor/4d588a40-4695-48bc-8c6e-2b0b3445f16e?';
-        $this->outerFirstPage = 'http://www.mk.ru/search/?q=%D0%BB%D0%B8%D1%82%D0%B2%D0%B0';
+        $this->apiKey = $apiKey;
+        $this->innerUrl = $innerUrl;
+        $this->outerUrl = $outerUrl;
+        $this->outerFirstPage = $outerFirstPage;
+        $this->parser = $parser;
     }
 
     public function getOuterPage($url = null)
     {
-        $parser = new Parser();
-        $outerCrawlerUrl = $this->buildOuterPageUrl();
+        $outerCrawlerUrl = $this->buildOuterPageUrl($url);
         $outerPage = json_decode(file_get_contents($outerCrawlerUrl));
 
         foreach ($outerPage->extractorData->data[0]->group[0]->LINK as $source) {
             $innerPageData = $this->getInnerPage($source->href);
-            $pageInfo = $parser->parsePage($innerPageData);
+            $pageInfo = $this->parser->parsePage($innerPageData);
             $pageInfo['url'] = $source->href;
+            $this->parser->persistPage($pageInfo);
         }
 
         $nextPage = null;
 
         if (isset($outerPage->extractorData->data[0]->group[0]->Next[0]->href)) {
             $nextPage = $outerPage->extractorData->data[0]->group[0]->Next[0]->href;
-//            $a = $this->buildOuterPageUrl($outerPage->extractorData->data[0]->group[0]->Next[0]->href);
-//            $outerPage = json_decode(file_get_contents($a));
         }
+
+        $this->parser->flush();
 
         return ['pages' => $this->pages, 'nextPage' => $nextPage];
     }
