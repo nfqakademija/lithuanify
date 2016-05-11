@@ -1,13 +1,19 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
+    crawler.api.1: '5afb00834532417d9e6a033abe6dfc09938db9122c38aa67153f65608831ec19d77821d17f57a1392bf7dd9715a4eb154b71c51886e00681b5924833b907523cff1f1edb5869b759ed2a5ec091fae469'
+    mk.inner.url: 'https://extraction.import.io/query/extractor/e4b61415-4984-4e64-b35c-03694f6efab9?'
+    mk.outer.url: 'https://extraction.import.io/query/extractor/4d588a40-4695-48bc-8c6e-2b0b3445f16e?'
+    mk.outer.page: 'http://www.mk.ru/search/?q=литва'
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     article_manager:
         class: LithuanifyBundle\Utility\ArticleManager
         arguments:
             ["@doctrine"]
+    mk.parser:
+        class: LithuanifyBundle\Crawler\Ru\Mk\Parser
+        arguments: ['@doctrine']
+    mk.crawler:
+        class: LithuanifyBundle\Crawler\Ru\Mk\Crawler
+        arguments: ['%crawler.api.1%', '%mk.inner.url%', '%mk.outer.url%', '%mk.outer.page%', '@mk.parser']

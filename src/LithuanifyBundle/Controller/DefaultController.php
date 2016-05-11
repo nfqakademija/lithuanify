@@ -2,8 +2,6 @@
 
 namespace LithuanifyBundle\Controller;
 
-use LithuanifyBundle\Entity\Article;
-use LithuanifyBundle\Entity\Country;
 use LithuanifyBundle\Entity\DatePicker;
 use LithuanifyBundle\Entity\EventPicker;
 use LithuanifyBundle\Form\DatePick;
@@ -31,10 +29,10 @@ class DefaultController extends Controller
         $form1 = $this->createForm(EventPick::class, $eventPick);
 
         $articleManager = $this->get('article_manager');
-
-
         $datePick->setBeginDate(new \DateTime());
         $datePick->setEndDate(new \DateTime());
+        $form->get('beginDate')->setData(new \DateTime());
+        $form->get('endDate')->setData(new \DateTime());
 
         $articles = $articleManager->searchArticles($datePick);
         $rawArticles = $articleManager->buildArray($articles);
@@ -42,25 +40,35 @@ class DefaultController extends Controller
         $form1->handleRequest($request);
         if ($form1->isValid()) {
             $event = date('m/d/Y', $eventPick->getCurrentDate());
-
+            $datePick->setBeginDate(new \DateTime($event));
+            $datePick->setEndDate(new \DateTime($event));
             $form->get('beginDate')->setData(new \DateTime($event));
             $form->get('endDate')->setData(new \DateTime($event));
-        } else {
-            $form->get('beginDate')->setData(new \DateTime());
-            $form->get('endDate')->setData(new \DateTime());
         }
 
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($request->isMethod('POST')) {
             $articles = $articleManager->searchArticles($datePick);
             $rawArticles = $articleManager->buildArray($articles);
         }
 
-
         return $this->render('LithuanifyBundle:Default:index.html.twig', [
-            'form' => $form->createView(),
-            'form1' => $form1->createView(),
-            'articles' => $rawArticles,
+                'form' => $form->createView(),
+                'form1' => $form1->createView(),
+                'articles' => $rawArticles,
         ]);
+    }
+    /**
+     * @Route("/data")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function dataAction()
+    {
+        $crawler = $this->get('mk.crawler');
+        $nextPage = $crawler->getOuterPage();
+
+        do {
+            $crawler->getOuterPage($nextPage);
+        } while (!is_null($nextPage));
     }
 }
