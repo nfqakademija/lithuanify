@@ -26,6 +26,12 @@ html, body, .container, #map {
     z-index: 2000000;
     position: absolute;
 }
+.no-pointer-events {
+    pointer-events: none;
+}
+.pointer-events-all {
+    pointer-events: all;
+}
 .no-margin-bottom {
     margin-bottom: 0;
 }

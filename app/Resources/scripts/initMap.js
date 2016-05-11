@@ -52,7 +52,7 @@ function attachMarkerMessage(marker, countryName, articles, flag) {
 
         var div = document.getElementById('js-load-articles');
         for (i = 0; i < articles.length; i++) {
-            articleList += '<article class="read-toggle">'+
+            articleList += '<article class="read-toggle pointer-events-all">'+
                 '<div class="col-lg-2 col-md-2 col-sm-2">'+
                 '<img src=\"'+ assetsDir + flag+'\">'+
             '</div>'+

@@ -40,7 +40,7 @@
                     {% endif %}
                     {% for country in articles %}
                         {% for article in country[3] %}
-                            <article class="read-toggle">
+                            <article class="read-toggle pointer-events-all">
                                 <div class="col-lg-2 col-md-2 col-sm-2">
                                     <img src="{{ asset('images/flags/')}}{{ country[4] }}">
                                 </div>
@@ -57,10 +57,10 @@
             </ul>
         </div>
 
-        <div class="row">
+        <div class="row no-pointer-events">
             <div class="col-lg-3 col-sm-3"></div>
             <div class="col-lg-6 col-md-12">
-                <div class="read-article-space-top" id="read-article">
+                <div class="read-article-space-top pointer-events-all" id="read-article">
                 </div>
             </div>
             <div class="col-lg-3"></div>
@@ -68,9 +68,9 @@
 
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                    <div class="row">
+                    <div class="row no-pointer-events">
                         <div class="col-lg-4"></div>
-                        <div class = "col-lg-4">
+                        <div class = "col-lg-4 pointer-events-all">
                             <div class="welcome-message">
                                 Sužinok ką apie Lietuvą kalba užsienyje...</br>
                             </div>
