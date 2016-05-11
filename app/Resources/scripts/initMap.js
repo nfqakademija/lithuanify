@@ -38,7 +38,8 @@ function initMap() {
 }
 
 function attachSecretMessage(marker, countryName, articles) {
-    var message = '<b>' + countryName + '</b><br />Iš viso strapsnių: <b>' + articles.length + '</b>';
+    var message = '' +
+        '<b>' + countryName + '</b><br />Iš viso strapsnių: <b>' + articles.length + '</b>';
     var infowindow = new google.maps.InfoWindow({
         content: message
     });
@@ -67,8 +68,10 @@ function attachSecretMessage(marker, countryName, articles) {
 
 function readArticle(article)
 {
-    var displayArticle = '<button type="button" class="btn btn-primary btn-xs"' +
-        'onclick="closeArticle()">Uždaryti</button><h3>' + article[0] + '</h3><p>' + article[1] + '</p>';
+    var displayArticle = '<div class="well">' +
+        '<button type="button" class="btn btn-primary btn-sm"' + 'onclick="closeArticle()">' +
+        '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Uždaryti</button>' +
+        '<h3>' + article[0] + '</h3>' + article[1] + '</div>';
 
     return function () {
         var article = document.getElementById('read-article');

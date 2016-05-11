@@ -16,10 +16,14 @@
 {% endblock %}
 {% block body %}
     {{ parent() }}
-    <button type="button" class="btn btn-primary btn-xs" id="menu-on" style="display: none;">Rodyti</button>
+    <button type="button" class="btn btn-primary btn-sm" id="menu-on" style="display: none;">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Rodyti
+    </button>
     <div id="wrapper">
         <div id="sidebar-wrapper">
-            <button type="button" class="btn btn-primary btn-xs" id="menu-on-off">Slėpti</button>
+            <button type="button" class="btn btn-primary btn-xs" id="menu-on-off">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Slėpti
+            </button>
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
@@ -37,12 +41,17 @@
                             </article>
                         {% endfor %}
                     {% endfor %}
-                    </div>
+                </div>
             </ul>
         </div>
 
-        <div class="spaceTop spaceLeft" id="read-article">
-            <button type="button" class="btn btn-primary btn-xs" id="read-toggle2">Uždaryti</button>
+        <div class="row" style="z-index: 999">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-md-12">
+                <div class="spaceLeft" id="read-article">
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
         </div>
 
         <div id="page-content-wrapper">
@@ -54,17 +63,27 @@
                             <div class="input-daterange input-group" data-provide="datepicker" id="range">
                                 {{ form_start(form) }}
                                 <div class="col-lg-4 no-gutter">
-                                    {{ form_errors(form.beginDate) }}
-                                    {{ form_widget(form.beginDate) }}
+                                    <div class="input-group input-append date" id="datePicker">
+                                        {{ form_errors(form.beginDate) }}
+                                        {{ form_widget(form.beginDate) }}
+                                            <span class="input-group-addon add-on">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4 no-gutter">
+                                    <div class="input-group input-append date" id="datePicker">
                                         {{ form_errors(form.endDate) }}
                                         {{ form_widget(form.endDate) }}
+                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4 no-gutter">
                                     <span class="input-group-btn no-gutter pull-left">
                                         <button type = "submit" class ="btn btn-primary" id="date_pick_save"
-                                                name="date_pick[save]" value="ieskoti">Ieškoti</button>
+                                                name="date_pick[save]" value="ieskoti">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ieškoti
+                                        </button>
                                         <button type="button" class="btn btn-success" id="event-on">Įvykiai</button>
                                     </span>
                                 </div>

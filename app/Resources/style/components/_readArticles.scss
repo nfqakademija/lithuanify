@@ -1,6 +1,6 @@
 $articleWidth: 520px;
 $articleSpaceTop: 100px;
-$articleSpaceLeft: 350px;
+$articleSpaceLeft: 300px;
 $articleMainImageWidth: 520px;
 
 .littleSpaceRight {
@@ -16,8 +16,8 @@ $articleMainImageWidth: 520px;
 #read-article {
   width: 100%;
   height: 100%;
-  background-color: white;
-  display: none;
+  background-color: white ;
+
   h3,
   p {
     width: $articleWidth;
