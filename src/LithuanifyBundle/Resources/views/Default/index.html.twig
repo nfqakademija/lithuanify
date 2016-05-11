@@ -45,10 +45,10 @@
                                     <img src="{{ asset('images/flags/')}}{{ country[4] }}">
                                 </div>
                                 <div class="col-lg-10 col-lg-10 sm-10">
-                                   <h5 style="margin-top: 0">{{ article[0] }}<br>
+                                   <h4 style="margin-top: 0">{{ article[0] }}<br>
                                    <small>
                                        {{ article[1] }}
-                                   </small></h5>
+                                   </small></h4>
                                 </div>
                             </article>
                         {% endfor %}
@@ -57,7 +57,7 @@
             </ul>
         </div>
 
-        <div class="row" style="z-index: 999">
+        <div class="row">
             <div class="col-lg-3 col-sm-3"></div>
             <div class="col-lg-6 col-md-12">
                 <div class="read-article-space-top" id="read-article">
@@ -68,13 +68,12 @@
 
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <center>
                     <div class="row">
                         <div class="col-lg-4"></div>
                         <div class = "col-lg-4">
                             <div class="welcome-message">
-                            Sužinok ką apie Lietuvą kalba užsienyje...</br>
-                                </div>
+                                Sužinok ką apie Lietuvą kalba užsienyje...</br>
+                            </div>
                             <div class="input-daterange input-group" data-provide="datepicker" id="range">
                                 {{ form_start(form) }}
                                 <div class="col-lg-4 no-gutter">
@@ -122,9 +121,11 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <img class="img-responsive pull-right" src="{{ asset('images/lithuanify.png') }}"
+                                 alt="lithuanify" width="40%">
+                        </div>
                     </div>
-                </center>
             </div>
             <div id="map"></div>
         </div>
