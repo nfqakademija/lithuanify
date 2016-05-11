@@ -83,8 +83,6 @@ function readArticle(article)
 
     return function () {
         var article = document.getElementById('read-article');
-        var contentWrapper = document.getElementById('page-content-wrapper');
-        //contentWrapper.style.display = 'none';
         article.innerHTML = displayArticle;
         article.style.display = 'block';
     }
@@ -93,8 +91,6 @@ function readArticle(article)
 function closeArticle()
 {
     var article = document.getElementById('read-article');
-    var contentWrapper = document.getElementById('page-content-wrapper');
-    //contentWrapper.style.display = 'block';
     article.style.display = 'none';
 }
 
