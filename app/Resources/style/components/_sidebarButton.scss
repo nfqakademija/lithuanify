@@ -1,0 +1,13 @@
+#menu-on-off {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+  z-index: 1000;
+}
+#menu-on {
+  position: absolute;
+  left: 8px;
+  top: 20px;
+  z-index: 2000001;
+  display:none;
+}

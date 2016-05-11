@@ -1,77 +1,3 @@
-#menu-on-off {
-  position: absolute;
-  right: 8px;
-  top: 5px;
-  z-index: 1000;
-}
-#menu-on {
-  position: absolute;
-  left: 8px;
-  top: 20px;
-  z-index: 2000001;
-  display:none;
-}
-
-#wrapper {
-  padding-left: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-#wrapper.toggled {
-  padding-left: 250px;
-}
-
-#sidebar-wrapper {
-  z-index: 1000;
-  position: fixed;
-  left: 250px;
-  width: 0;
-  height: 100%;
-  margin-left: -250px;
-  overflow-y: auto;
-  background: rgba(0, 0, 0, 0.8);
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-  width: 250px;
-}
-
-#page-content-wrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-#wrapper.toggled #page-content-wrapper {
-  position: absolute;
-  margin-right: -250px;
-}
-
-/* Article list */
-article {
-  width: 300px;
-  max-height: 150px;
-  color: #a3a3a3;
-  padding: 10px 10px 10px 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  p {
-    max-height: 150px;
-    word-break: break-all;
-  }
-}
-article :hover{
-  color: #d4d4d4;
-}
 /* Sidebar Styles */
 
 .sidebar-nav {
@@ -145,4 +71,41 @@ article :hover{
     position: relative;
     margin-right: 0;
   }
+}
+#wrapper {
+   padding-left: 0;
+   width: 100%;
+   height: 100%;
+   @include transition(all 0.5s ease);
+ }
+
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.8);
+  @include transition(all 0.5s ease);
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
 }

@@ -69,7 +69,7 @@ function attachMarkerMessage(marker, countryName, articles, flag) {
 
 function readArticle(article)
 {
-    var displayArticle = '<div class="well noMarginBottom">' +
+    var displayArticle = '<div class="well no-margin-bottom">' +
         '<button type="button" class="btn btn-primary btn-sm"' + 'onclick="closeArticle()">' +
         '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Uždaryti</button>' +
         '<h3>' + article[0] + '</h3>' + article[1] + '</div>';

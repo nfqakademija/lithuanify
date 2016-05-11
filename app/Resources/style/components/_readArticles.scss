@@ -1,33 +1,21 @@
-$articleWidth: 520px;
-$articleSpaceTop: 55px;
-$articleSpaceLeft: 300px;
-$articleMainImageWidth: 520px;
+$article-width: 520px;
+$red-article-space-top: 55px;
+$read-article-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-.littleSpaceRight {
-  padding-right: 5px;
+.read-article-space-top {
+  margin-top: $red-article-space-top;
 }
 
-.spaceTop {
-  margin-top: $articleSpaceTop;
-}
-.spaceLeft {
-  margin-left: $articleSpaceLeft;
-}
-.noMarginBottom {
-  margin-bottom: 0;
-}
 #read-article {
   max-width: 100%;
   max-height: 90vh;
   background: transparent;
-  overflow-y:scroll;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow-y: scroll;
+  @include box-shadow($read-article-box-shadow);
+
   h3,
   p {
-    width: $articleWidth;
+    width: $article-width;
     word-break: break-all;
-  }
-  .mainImg {
-    width: $articleMainImageWidth;
   }
 }

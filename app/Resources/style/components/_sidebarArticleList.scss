@@ -1,0 +1,19 @@
+$sidebar-article-width: 300px;
+$sidebar-article-color: #a3a3a3;
+$sidebar-article-hover-color: #d4d4d4;
+
+article {
+  width: $sidebar-article-width;
+  max-height: 150px;
+  color: $sidebar-article-color;
+  padding: 10px 10px 10px 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  p {
+    max-height: 150px;
+    word-break: break-all;
+  }
+}
+article :hover{
+  color: $sidebar-article-hover-color;
+}

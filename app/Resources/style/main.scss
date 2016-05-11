@@ -3,8 +3,11 @@
 @import "./bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min";
 
 @import "base/variables";
+@import "base/mixins";
 @import "components/readArticles";
 @import "components/slider";
+@import "components/sidebarButton";
+@import "components/sidebarArticleList";
 @import "components/sidebar";
 
 html, body, .container, #map {
@@ -21,6 +24,9 @@ html, body, .container, #map {
     margin-top: $gutter;
     z-index: 2000000;
     position: absolute;
+}
+.no-margin-bottom {
+    margin-bottom: 0;
 }
 #map {
     height:100%;
