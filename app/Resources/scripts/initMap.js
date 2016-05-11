@@ -26,8 +26,9 @@ function initMap() {
             map: map,
             animation: google.maps.Animation.DROP,
             title: test[i][0],
-            icon: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_black'+
-            test[i][3].length+'.png'
+            // icon: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_black'+
+            // test[i][3].length+'.png'
+            icon: 'http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|1|BDBDBD|13|_|'+test[i][3].length
         });
         attachMarkerMessage(marker, test[i][0], test[i][3], test[i][4]);
         for (k = 0; k < test[i][3].length; k++) {
@@ -57,10 +58,10 @@ function attachMarkerMessage(marker, countryName, articles, flag) {
                 '<img src=\"'+ assetsDir + flag+'\">'+
             '</div>'+
             '<div class="col-lg-10 col-lg-10 sm-10">'+
-                '<h5 style="margin-top: 0">'+articles[i][0].substring(0, 87)+'<br>'+
+                '<h4 style="margin-top: 0">'+articles[i][0].substring(0, 87)+'<br>'+
                 '<small>'+
                 articles[i][1].substring(0, 150)+
-                '</small></h5>'+
+                '</small></h4>'+
                 '</div>'+
                 '</article>';
         }
