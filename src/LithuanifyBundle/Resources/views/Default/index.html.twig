@@ -26,18 +26,30 @@
             </button>
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
                         Rasti straipsniai
-                    </a>
                 </li>
                 <div id="js-load-articles">
+                    {% if articles|length == 0 %}
+                        <article class="read-toggle">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                            </div>
+                            <div class="col-lg-10 col-lg-10 sm-10">
+                                <h5 style="margin-top: 0">Straipsnių nerasta</h5>
+                            </div>
+                        </article>
+                    {% endif %}
                     {% for country in articles %}
                         {% for article in country[3] %}
                             <article class="read-toggle">
-                                <h4>{{ article[0] }}</h4>
-                                <img class="littleSpaceRight" width="105px"
-                                     src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" style="float: left;" />
-                                <p>{{ article[1] }}</p>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <img src="{{ asset('images/flags/')}}{{ country[4] }}">
+                                </div>
+                                <div class="col-lg-10 col-lg-10 sm-10">
+                                   <h5 style="margin-top: 0">{{ article[0] }}<br>
+                                   <small>
+                                       {{ article[1] }}
+                                   </small></h5>
+                                </div>
                             </article>
                         {% endfor %}
                     {% endfor %}
@@ -46,7 +58,7 @@
         </div>
 
         <div class="row" style="z-index: 999">
-            <div class="col-lg-3"></div>
+            <div class="col-lg-3 col-sm-3"></div>
             <div class="col-lg-6 col-md-12">
                 <div class="read-article-space-top" id="read-article">
                 </div>
@@ -66,9 +78,9 @@
                                     <div class="input-group input-append date" id="datePicker">
                                         {{ form_errors(form.beginDate) }}
                                         {{ form_widget(form.beginDate) }}
-                                            <span class="input-group-addon add-on">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
+                                        <span class="input-group-addon add-on">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 no-gutter">

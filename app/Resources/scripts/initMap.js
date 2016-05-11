@@ -52,10 +52,17 @@ function attachMarkerMessage(marker, countryName, articles, flag) {
 
         var div = document.getElementById('js-load-articles');
         for (i = 0; i < articles.length; i++) {
-            articleList += '<article id="read-toggle"' +
-                'class="read-toggle"><h4>' + articles[i][0].substring(0, 87) + '</h4>' +
-                '<img class="littleSpaceRight" width="105px" src="http://g2.dcdn.lt/images/pix/arunas-70820028.jpg" ' +
-                'style="float: left;" /> <p>' + articles[i][1].substring(0, 150) + '</p> </article>';
+            articleList += '<article class="read-toggle">'+
+                '<div class="col-lg-2 col-md-2 col-sm-2">'+
+                '<img src=\"'+ assetsDir + flag+'\">'+
+            '</div>'+
+            '<div class="col-lg-10 col-lg-10 sm-10">'+
+                '<h5 style="margin-top: 0">'+articles[i][0].substring(0, 87)+'<br>'+
+                '<small>'+
+                articles[i][1].substring(0, 150)+
+                '</small></h5>'+
+                '</div>'+
+                '</article>';
         }
         div.innerHTML = articleList;
         var newArticles = document.getElementsByTagName('article');
