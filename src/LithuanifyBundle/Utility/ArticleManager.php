@@ -29,6 +29,9 @@ class ArticleManager
      */
     public function searchArticles(DatePicker $date)
     {
+        if ($date->getBeginDate() == null || $date->getEndDate() == null) {
+            return array();
+        }
         $query = $this->managerRegistry->getManager()->createQuery(
             'SELECT p
                 FROM LithuanifyBundle:Article p

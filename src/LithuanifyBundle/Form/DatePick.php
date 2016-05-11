@@ -52,6 +52,7 @@ class DatePick extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'LithuanifyBundle\Entity\DatePicker',
             'allow_extra_fields' => true,
+            'attr' => ['id' => 'date-pick'],
         ));
     }
 }
