@@ -84,7 +84,7 @@ class Parser
 
         return $date;
     }
-    
+
     private function parseRussianMonths($month)
     {
         switch ($month) {
