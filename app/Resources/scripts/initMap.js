@@ -68,7 +68,7 @@ function attachSecretMessage(marker, countryName, articles) {
 
 function readArticle(article)
 {
-    var displayArticle = '<div class="well">' +
+    var displayArticle = '<div class="well noMarginBottom">' +
         '<button type="button" class="btn btn-primary btn-sm"' + 'onclick="closeArticle()">' +
         '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Uždaryti</button>' +
         '<h3>' + article[0] + '</h3>' + article[1] + '</div>';
@@ -76,7 +76,7 @@ function readArticle(article)
     return function () {
         var article = document.getElementById('read-article');
         var contentWrapper = document.getElementById('page-content-wrapper');
-        contentWrapper.style.display = 'none';
+        //contentWrapper.style.display = 'none';
         article.innerHTML = displayArticle;
         article.style.display = 'block';
     }
@@ -86,7 +86,7 @@ function closeArticle()
 {
     var article = document.getElementById('read-article');
     var contentWrapper = document.getElementById('page-content-wrapper');
-    contentWrapper.style.display = 'block';
+    //contentWrapper.style.display = 'block';
     article.style.display = 'none';
 }
 
