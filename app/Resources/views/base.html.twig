@@ -29,6 +29,7 @@
 {% block javascripts %}
     <script>
         var test = {{ articles|json_encode|raw }};
+        var assetsDir = "{{ asset('images/flags/') }}";
     </script>
     <script src="{{ asset('js/script.js') }}"></script>
     <script async defer

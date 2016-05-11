@@ -65,6 +65,7 @@ class ArticleManager
                     $article->getCountry()->getLat(),
                     $article->getCountry()->getLng(),
                     array(array($article->getTitle(), $article->getContent())),
+                    $article->getCountry()->getFlag(),
                 ));
             }
         }

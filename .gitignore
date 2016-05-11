@@ -9,7 +9,6 @@
 /bin/
 /node_modules/
 /bower_components/
-/web/images/
 /web/fonts/
 *~
 .idea

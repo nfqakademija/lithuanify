@@ -29,7 +29,7 @@ function initMap() {
             icon: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_black'+
             test[i][3].length+'.png'
         });
-        attachSecretMessage(marker, test[i][0], test[i][3]);
+        attachMarkerMessage(marker, test[i][0], test[i][3], test[i][4]);
         for (k = 0; k < test[i][3].length; k++) {
             newArticles[totalArticles].addEventListener('click', readArticle(test[i][3][k]));
             totalArticles ++;
@@ -37,8 +37,9 @@ function initMap() {
     }
 }
 
-function attachSecretMessage(marker, countryName, articles) {
-    var message = '' +
+function attachMarkerMessage(marker, countryName, articles, flag) {
+    var countryFlag = '<img src=\"'+ assetsDir + flag+'\">';
+    var message = countryFlag +
         '<b>' + countryName + '</b><br />Iš viso strapsnių: <b>' + articles.length + '</b>';
     var infowindow = new google.maps.InfoWindow({
         content: message
