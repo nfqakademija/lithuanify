@@ -12,6 +12,10 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use LithuanifyBundle\Entity\Event;
 
+/**
+ * Class LoadEventData
+ * @package LithuanifyBundle\DataFixtures\ORM
+ */
 class LoadEventData implements FixtureInterface
 {
 

@@ -12,16 +12,20 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use LithuanifyBundle\Entity\Country;
 
-
+/**
+ * Class LoadCountryData
+ * @package LithuanifyBundle\DataFixtures\ORM
+ */
 class LoadCountryData implements FixtureInterface
 {
 
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
-        if (($handle = fopen(__DIR__ . "/countries.csv", "r")) !== FALSE)
-        {
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
-            {
+        if (($handle = fopen(__DIR__."/countries.csv", "r")) !== false) {
+            while (($data = fgetcsv($handle, 1000, ",")) !== false) {
                 $country = new Country();
                 $country->setName($data[0]);
                 $country->setLat($data[6]);

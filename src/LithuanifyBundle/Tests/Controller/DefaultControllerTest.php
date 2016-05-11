@@ -4,8 +4,15 @@ namespace LithuanifyBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class DefaultControllerTest
+ * @package LithuanifyBundle\Tests\Controller
+ */
 class DefaultControllerTest extends WebTestCase
 {
+    /**
+     *
+     */
     public function testResponseCode()
     {
         $client = static::createClient();
@@ -14,6 +21,10 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), $client->getResponse()->getContent());
     }
+
+    /**
+     *
+     */
     public function testIfFormExist()
     {
         $client = static::createClient();
