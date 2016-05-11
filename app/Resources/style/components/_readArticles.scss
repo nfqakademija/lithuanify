@@ -1,5 +1,5 @@
 $article-width: 520px;
-$red-article-space-top: 55px;
+$red-article-space-top: 95px;
 $read-article-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 .read-article-space-top {
@@ -8,7 +8,7 @@ $read-article-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0
 
 #read-article {
   max-width: 100%;
-  max-height: 90vh;
+  max-height: 86vh;
   background: transparent;
   overflow-y: scroll;
   @include box-shadow($read-article-box-shadow);
