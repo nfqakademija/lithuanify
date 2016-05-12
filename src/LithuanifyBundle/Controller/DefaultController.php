@@ -60,23 +60,4 @@ class DefaultController extends Controller
                 'articles' => $rawArticles,
         ]);
     }
-    /**
-     * @Route("/data/{password}")
-     * @param string $password
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function dataAction($password)
-    {
-        if (strcmp(md5($password), 'c809de5615bf8936b09b1da2f714032a') == 0) {
-            $crawler = $this->get('mk.crawler');
-            $crawler->setCrawlerDateLimit(strtotime('2016/05/05'));
-            $nextPage = $crawler->getOuterPage();
-
-            do {
-                $crawler->getOuterPage($nextPage);
-            } while (!is_null($nextPage));
-        }
-
-        return $this->render('LithuanifyBundle:Default:crawler.html.twig');
-    }
 }
