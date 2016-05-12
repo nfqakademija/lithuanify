@@ -22,3 +22,22 @@ $("#menu-on").click(function() {
 $("#event-on").click(function() {
     $("#EventForm").toggle();
 });
+
+$('#date_pick_beginDate').datepicker({
+    format: "mm/dd/yyyy",
+    todayBtn: "linked",
+    language: "lt",
+    autoclose: true,
+    todayHighlight: true,
+    startDate: "01/01/1990",
+    endDate: "today"
+});
+$('#date_pick_endDate').datepicker({
+    format: "mm/dd/yyyy",
+    todayBtn: "linked",
+    language: "lt",
+    autoclose: true,
+    todayHighlight: true,
+    startDate: "01/01/1990",
+    endDate: "today"
+});
