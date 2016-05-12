@@ -44,10 +44,12 @@ class DefaultController extends Controller
             $datePick->setEndDate(new \DateTime($event));
             $form->get('beginDate')->setData(new \DateTime($event));
             $form->get('endDate')->setData(new \DateTime($event));
+            $articles = $articleManager->searchArticles($datePick);
+            $rawArticles = $articleManager->buildArray($articles);
         }
 
         $form->handleRequest($request);
-        if ($request->isMethod('POST')) {
+        if ($form->isValid()) {
             $articles = $articleManager->searchArticles($datePick);
             $rawArticles = $articleManager->buildArray($articles);
         }
@@ -59,16 +61,22 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("/data")
+     * @Route("/data/{password}")
+     * @param string $password
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function dataAction()
+    public function dataAction($password)
     {
-        $crawler = $this->get('mk.crawler');
-        $nextPage = $crawler->getOuterPage();
+        if (strcmp(md5($password), 'c809de5615bf8936b09b1da2f714032a') == 0) {
+            $crawler = $this->get('mk.crawler');
+            $crawler->setCrawlerDateLimit(strtotime('2016/05/05'));
+            $nextPage = $crawler->getOuterPage();
 
-        do {
-            $crawler->getOuterPage($nextPage);
-        } while (!is_null($nextPage));
+            do {
+                $crawler->getOuterPage($nextPage);
+            } while (!is_null($nextPage));
+        }
+
+        return $this->render('LithuanifyBundle:Default:crawler.html.twig');
     }
 }

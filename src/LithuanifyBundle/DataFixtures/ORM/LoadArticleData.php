@@ -28,7 +28,6 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
                 $article->setContent($data[1]);
                 $article->setDate(strtotime($data[2]));
                 $article->setCountry($manager->getRepository('LithuanifyBundle:Country')->find($data[3]));
-                //$article->setCountryId(41);
                 $article->setNewsUrl($data[4]);
                 $article->setEventId(null);
                 $article->setSourceId(null);
@@ -40,6 +39,9 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
         }
     }
 
+    /**
+     * @return int
+     */
     public function getOrder()
     {
         return 2;

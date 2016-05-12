@@ -12,8 +12,9 @@ class Crawler
     private $innerUrl;
     private $outerFirstPage;
     private $parser;
+    private $crawlerDateLimit;
 
-    function __construct($apiKey, $innerUrl, $outerUrl, $outerFirstPage, Parser $parser)
+    public function __construct($apiKey, $innerUrl, $outerUrl, $outerFirstPage, Parser $parser)
     {
         $this->apiKey = $apiKey;
         $this->innerUrl = $innerUrl;
@@ -22,16 +23,27 @@ class Crawler
         $this->parser = $parser;
     }
 
+    /**
+     * @param null $url
+     * @return null
+     */
     public function getOuterPage($url = null)
     {
         $outerCrawlerUrl = $this->buildOuterPageUrl($url);
         $outerPage = json_decode($this->makeRequest($outerCrawlerUrl));
+        $pageInfo = null;
+        $limitDateReached = false;
 
-        foreach ($outerPage->extractorData->data[0]->group[0]->LINK as $source) {
-            $innerPageData = $this->getInnerPage($source->href);
-            $pageInfo = $this->parser->parsePage($innerPageData);
-            $pageInfo['url'] = $source->href;
-            $this->parser->persistPage($pageInfo);
+        if (array_key_exists('extractorData', $outerPage)) {
+            foreach ($outerPage->extractorData->data[0]->group[0]->LINK as $source) {
+                $innerPageData = $this->getInnerPage($source->href);
+                $pageInfo = $this->parser->parsePage($innerPageData);
+                $pageInfo['url'] = $source->href;
+                if ($pageInfo != null && $pageInfo['date'] != false && $pageInfo['date'] < $this->getCrawlerDateLimit()) {
+                    $limitDateReached = true;
+                }
+                $this->parser->persistPage($pageInfo);
+            }
         }
 
         $nextPage = null;
@@ -41,13 +53,33 @@ class Crawler
         }
 
         $this->parser->flush();
+        if ($limitDateReached == true) {
+            return null;
+        }
 
         return $nextPage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCrawlerDateLimit()
+    {
+        return $this->crawlerDateLimit;
+    }
+
+    /**
+     * @param mixed $crawlerDateLimit
+     */
+    public function setCrawlerDateLimit($crawlerDateLimit)
+    {
+        $this->crawlerDateLimit = $crawlerDateLimit;
     }
 
     private function getInnerPage($url)
     {
         $innerPageUrl = $this->buildInnerPageUrl($url);
+
         return json_decode($this->makeRequest($innerPageUrl));
     }
 
@@ -56,9 +88,9 @@ class Crawler
         $outerCrawlerUrl = $this->outerUrl;
         $options = [
             '_apikey' => $this->apiKey,
-            'url' => is_null($url) ? $this->outerFirstPage : $url
+            'url' => is_null($url) ? $this->outerFirstPage : $url,
         ];
-        $outerCrawlerUrl .= http_build_query($options,'','&');
+        $outerCrawlerUrl .= http_build_query($options, '', '&');
 
         return $outerCrawlerUrl;
     }
@@ -68,9 +100,9 @@ class Crawler
         $innerCrawlerUrl = $this->innerUrl;
         $options = [
             '_apikey' => $this->apiKey,
-            'url' => $url
+            'url' => $url,
         ];
-        $innerCrawlerUrl .= http_build_query($options,'','&');
+        $innerCrawlerUrl .= http_build_query($options, '', '&');
 
         return $innerCrawlerUrl;
     }
@@ -84,6 +116,7 @@ class Crawler
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $data = curl_exec($ch);
         curl_close($ch);
+
         return $data;
     }
 }
