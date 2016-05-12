@@ -3,6 +3,7 @@
 namespace LithuanifyBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use LithuanifyBundle\Entity\Article;
 
@@ -10,7 +11,7 @@ use LithuanifyBundle\Entity\Article;
  * Class LoadArticleData
  * @package LithuanifyBundle\DataFixtures\ORM
  */
-class LoadArticleData extends AbstractFixture
+class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     /**
@@ -25,10 +26,10 @@ class LoadArticleData extends AbstractFixture
                 $article = new Article();
                 $article->setTitle($data[0]);
                 $article->setContent($data[1]);
-                $article->setImage($data[2]);
-                $article->setDate($data[3]);
-                $article->setCountryId($data[4]);
-                $article->setNewsUrl($data[5]);
+                $article->setDate(strtotime($data[2]));
+                $article->setCountry($manager->getRepository('LithuanifyBundle:Country')->find($data[3]));
+                //$article->setCountryId(41);
+                $article->setNewsUrl($data[4]);
                 $article->setEventId(null);
                 $article->setSourceId(null);
 
@@ -37,5 +38,10 @@ class LoadArticleData extends AbstractFixture
             }
             fclose($handle);
         }
+    }
+
+    public function getOrder()
+    {
+        return 2;
     }
 }

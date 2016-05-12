@@ -39,8 +39,8 @@ class ArticleManager
                 AND p.date <= :endDate
                 ORDER BY p.country ASC'
         )
-        ->setParameter('beginDate', strtotime($date->getBeginDate()->format('d/m/Y')))
-        ->setParameter('endDate', strtotime($date->getEndDate()->format('d/m/Y')));
+        ->setParameter('beginDate', $date->getBeginDate()->getTimestamp())
+        ->setParameter('endDate', $date->getEndDate()->getTimestamp());
 
         return $query->getResult();
     }

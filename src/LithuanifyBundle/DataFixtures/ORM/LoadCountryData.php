@@ -8,7 +8,8 @@
 
 namespace LithuanifyBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use LithuanifyBundle\Entity\Country;
 
@@ -16,7 +17,7 @@ use LithuanifyBundle\Entity\Country;
  * Class LoadCountryData
  * @package LithuanifyBundle\DataFixtures\ORM
  */
-class LoadCountryData implements FixtureInterface
+class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     /**
@@ -37,5 +38,10 @@ class LoadCountryData implements FixtureInterface
             }
             fclose($handle);
         }
+    }
+
+    public function getOrder()
+    {
+        return 1;
     }
 }
