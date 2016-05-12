@@ -28,7 +28,7 @@ function initMap() {
             title: test[i][0],
             // icon: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_black'+
             // test[i][3].length+'.png'
-            icon: 'http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|1|BDBDBD|13|_|'+test[i][3].length
+            icon: 'http://chart.apis.google.com/chart?chst=d_map_spin&chld=0.7|1|848484|13|_|'+test[i][3].length
         });
         attachMarkerMessage(marker, test[i][0], test[i][3], test[i][4]);
         for (k = 0; k < test[i][3].length; k++) {

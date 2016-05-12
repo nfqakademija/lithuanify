@@ -59,7 +59,7 @@
 
         <div class="row no-pointer-events">
             <div class="col-lg-3 col-sm-3"></div>
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="read-article-space-top pointer-events-all" id="read-article">
                 </div>
             </div>
@@ -69,14 +69,14 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                     <div class="row no-pointer-events">
-                        <div class="col-lg-4"></div>
-                        <div class = "col-lg-4 pointer-events-all">
+                        <div class="col-lg-4 col-md-1 col-sm-0"></div>
+                        <div class = "col-lg-4 col-md-7 col-sm-10 col-xs-8 pointer-events-all">
                             <div class="welcome-message">
                                 Sužinok ką apie Lietuvą kalba užsienyje...</br>
                             </div>
                             <div class="input-daterange input-group" data-provide="datepicker" id="range">
                                 {{ form_start(form) }}
-                                <div class="col-lg-4 no-gutter">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-gutter">
                                     <div class="input-group input-append date" id="datePicker">
                                         {{ form_errors(form.beginDate) }}
                                         {{ form_widget(form.beginDate) }}
@@ -85,7 +85,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 no-gutter">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-gutter">
                                     <div class="input-group input-append date" id="datePicker">
                                         {{ form_errors(form.endDate) }}
                                         {{ form_widget(form.endDate) }}
@@ -107,7 +107,7 @@
                             <div class="row">
                                     <div id="EventForm" style="display: none;">
                                         <div class="col-lg-2"></div>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-8 col-sm-8 col-xs-8">
                                             <div class="col-lg-8 no-gutter">
                                                 {{ form_start(form1) }}
                                                 {{ form_widget(form1.event) }}
@@ -121,7 +121,7 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8">
+                        <div class="col-lg-4 col-md-4 col-sm-2 col-xs-4">
                             <img class="img-responsive pull-right" src="{{ asset('images/lithuanify.png') }}"
                                  alt="lithuanify" width="40%">
                         </div>
