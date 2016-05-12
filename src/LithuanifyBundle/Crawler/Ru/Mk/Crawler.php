@@ -6,7 +6,6 @@ use LithuanifyBundle\Crawler\Ru\Mk\Parser;
 
 class Crawler
 {
-    private $pages = [];
     private $apiKey;
     private $outerUrl;
     private $innerUrl;
@@ -26,6 +25,10 @@ class Crawler
     {
         $outerCrawlerUrl = $this->buildOuterPageUrl($url);
         $outerPage = json_decode($this->makeRequest($outerCrawlerUrl));
+
+        if ($outerPage->pageData->statusCode != 200) {
+            return false;
+        }
 
         foreach ($outerPage->extractorData->data[0]->group[0]->LINK as $source) {
             $innerPageData = $this->getInnerPage($source->href);

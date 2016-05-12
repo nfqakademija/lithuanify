@@ -41,8 +41,8 @@ class DefaultController extends Controller
         $nextPage = $crawler->getOuterPage();
 
         do {
-            $crawler->getOuterPage($nextPage);
-        } while (!is_null($nextPage));
+            $nextPage = $crawler->getOuterPage($nextPage);
+        } while ($nextPage != false);
     }
 
     public function importCountries()
